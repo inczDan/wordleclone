@@ -6,7 +6,7 @@ var linha = 0
 var coluna = 0
 
 var gameOver = false
-var palavra = "SQUID"
+var palavra = "CHINA"
 
 window.onload = function(){
     inicializar()
@@ -53,7 +53,7 @@ function inicializar(){
         else if (e.code == "Enter"){
             update()
             linha+=1 //caso pressione enter, iniciará uma nova linha e
-            coluna+=1 // nova coluna do zero.
+            coluna = 0 // nova coluna do zero.
         }
 
         if(!gameOver && linha == palpites){
