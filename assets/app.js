@@ -66,3 +66,28 @@ function inicializar(){
 }
 
 
+
+function update(){
+    let correto = 0
+    for (let c = 0; c < tamanhoPalavra; c++){
+        let currTile = document.getElementById(linha.toString()+ '-'+ c.toString())
+        let letra = currTile.innerText
+    
+        //se a letra estiver na posição correta
+        if (palavra[c] == letra){
+            currTile.classList.add("correct")
+            correto+=1
+        }
+        //se existir na palavra mas a posiçao estiver errada
+        else if (palavra.includes(letra)){
+            currTile.classList.add("present")
+        }
+        else {
+            currTile.classList.add("absent")
+        }
+
+        if (correto == tamanhoPalavra){
+            gameOver = true
+        }
+    }
+}
