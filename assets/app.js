@@ -69,25 +69,33 @@ function inicializar(){
 
 function update(){
     let correto = 0
+    let contaLetra = {} //exemplo: C:1 H:2 I:3 N:4 A:5
+    for(let i =0; i < palavra.length; i++){
+        letra = palavra[i]
+        if(contaLetra[letra]){
+            contaLetra[letra]+=1
+        }
+        else{
+            contaLetra[letra] = 1
+        }
+    }
+
     for (let c = 0; c < tamanhoPalavra; c++){
         let currTile = document.getElementById(linha.toString()+ '-'+ c.toString())
         let letra = currTile.innerText
     
-        //se a letra estiver na posição correta
-        if (palavra[c] == letra){
-            currTile.classList.add("correct")
-            correto+=1
-        }
-        //se existir na palavra mas a posiçao estiver errada
-        else if (palavra.includes(letra)){
-            currTile.classList.add("present")
-        }
-        else {
-            currTile.classList.add("absent")
-        }
+        //se conter na palavra
+        if (!currTile.classList.contains("correct")){    
+            if (palavra.includes(letra) &&  contaLetra[letra] > 0){
+                currTile.classList.add("present")
+                contaLetra[letra] -=1
+            }else {
+                currTile.classList.add("absent")
+            }
 
-        if (correto == tamanhoPalavra){
-            gameOver = true
+            if (correto == tamanhoPalavra){
+                gameOver = true
+            }
         }
     }
 }
